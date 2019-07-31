@@ -14,6 +14,8 @@
 package eventbus
 
 import (
+	"sync"
+
 	"github.com/jaredfolkins/honeytrap/event"
 	"github.com/jaredfolkins/honeytrap/pushers"
 )
@@ -21,6 +23,7 @@ import (
 // EventBus defines a structure which provides a pubsub bus where message.Events
 // are sent along it's wires for delivery
 type EventBus struct {
+	mu          sync.Mutex
 	subscribers []pushers.Channel
 }
 
@@ -31,13 +34,17 @@ func New() *EventBus {
 
 // Subscribe adds the giving channel to the list of subscribers for the giving bus.
 func (eb *EventBus) Subscribe(channel pushers.Channel) error {
+	eb.mu.Lock()
 	eb.subscribers = append(eb.subscribers, channel)
+	eb.mu.Unlock()
 	return nil
 }
 
 // Send deliverers the slice of messages to all subscribers.
 func (eb *EventBus) Send(e event.Event) {
+	eb.mu.Lock()
 	for _, subscriber := range eb.subscribers {
 		subscriber.Send(e)
 	}
+	eb.mu.Unlock()
 }
