@@ -24,7 +24,7 @@ import (
 
 	"bytes"
 
-	"github.com/honeytrap/honeytrap/event"
+	"github.com/jaredfolkins/honeytrap/event"
 )
 
 var (

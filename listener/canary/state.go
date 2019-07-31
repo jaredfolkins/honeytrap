@@ -21,7 +21,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/honeytrap/honeytrap/listener/canary/tcp"
+	"github.com/jaredfolkins/honeytrap/listener/canary/tcp"
 )
 
 // State defines a struct for holding connection data and address.

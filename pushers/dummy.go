@@ -13,7 +13,7 @@
 // limitations under the License.
 package pushers
 
-import "github.com/honeytrap/honeytrap/event"
+import "github.com/jaredfolkins/honeytrap/event"
 
 func MustDummy(...func(Channel) error) Channel {
 	return &dummyChannel{}

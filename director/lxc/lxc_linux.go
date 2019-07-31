@@ -25,8 +25,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/honeytrap/honeytrap/director"
-	"github.com/honeytrap/honeytrap/pushers"
+	"github.com/jaredfolkins/honeytrap/director"
+	"github.com/jaredfolkins/honeytrap/pushers"
 	lxc "gopkg.in/lxc/go-lxc.v2"
 )
 

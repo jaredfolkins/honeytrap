@@ -19,8 +19,8 @@ import (
 	"encoding/hex"
 	"net"
 
-	"github.com/honeytrap/honeytrap/event"
-	"github.com/honeytrap/honeytrap/pushers"
+	"github.com/jaredfolkins/honeytrap/event"
+	"github.com/jaredfolkins/honeytrap/pushers"
 )
 
 var (

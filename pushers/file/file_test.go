@@ -21,9 +21,9 @@ import (
 
 	"os"
 
-	"github.com/honeytrap/honeytrap/event"
-	"github.com/honeytrap/honeytrap/pushers"
-	fschannel "github.com/honeytrap/honeytrap/pushers/file"
+	"github.com/jaredfolkins/honeytrap/event"
+	"github.com/jaredfolkins/honeytrap/pushers"
+	fschannel "github.com/jaredfolkins/honeytrap/pushers/file"
 )
 
 func WithPath(path string) func(pushers.Channel) error {

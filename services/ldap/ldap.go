@@ -21,9 +21,9 @@ import (
 	"strings"
 
 	ber "github.com/go-asn1-ber/asn1-ber"
-	"github.com/honeytrap/honeytrap/event"
-	"github.com/honeytrap/honeytrap/pushers"
-	"github.com/honeytrap/honeytrap/services"
+	"github.com/jaredfolkins/honeytrap/event"
+	"github.com/jaredfolkins/honeytrap/pushers"
+	"github.com/jaredfolkins/honeytrap/services"
 	logging "github.com/op/go-logging"
 )
 

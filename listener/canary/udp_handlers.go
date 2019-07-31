@@ -22,9 +22,9 @@ import (
 	"net/http"
 
 	"github.com/google/gopacket/layers"
-	"github.com/honeytrap/honeytrap/event"
-	"github.com/honeytrap/honeytrap/listener/canary/ipv4"
-	"github.com/honeytrap/honeytrap/listener/canary/udp"
+	"github.com/jaredfolkins/honeytrap/event"
+	"github.com/jaredfolkins/honeytrap/listener/canary/ipv4"
+	"github.com/jaredfolkins/honeytrap/listener/canary/udp"
 )
 
 // contains different variables in use.

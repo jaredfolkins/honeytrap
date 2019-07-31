@@ -17,8 +17,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/honeytrap/honeytrap/event"
-	"github.com/honeytrap/honeytrap/pushers"
+	"github.com/jaredfolkins/honeytrap/event"
+	"github.com/jaredfolkins/honeytrap/pushers"
 	"github.com/op/go-logging"
 	"github.com/streadway/amqp"
 	"encoding/json"

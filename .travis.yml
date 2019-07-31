@@ -8,7 +8,7 @@ go:
 sudo: required
 dist: xenial
 
-go_import_path: github.com/honeytrap/honeytrap
+go_import_path: github.com/jaredfolkins/honeytrap
 
 services:
  - docker
@@ -35,7 +35,7 @@ before_install:
   - curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | bash -s -- -b $GOPATH/bin 
 
 install:
-  - go get -v github.com/honeytrap/honeytrap
+  - go get -v github.com/jaredfolkins/honeytrap
 
 script:
   - $GOPATH/bin/golangci-lint run

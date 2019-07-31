@@ -19,7 +19,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/honeytrap/honeytrap/services/filesystem"
+	"github.com/jaredfolkins/honeytrap/services/filesystem"
 )
 
 type Fs struct {

@@ -18,8 +18,8 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/honeytrap/honeytrap/listener"
-	"github.com/honeytrap/honeytrap/pushers"
+	"github.com/jaredfolkins/honeytrap/listener"
+	"github.com/jaredfolkins/honeytrap/pushers"
 	logging "github.com/op/go-logging"
 
 	water "github.com/songgao/water"

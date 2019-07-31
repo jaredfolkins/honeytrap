@@ -16,7 +16,7 @@ package pushers
 import (
 	"regexp"
 
-	"github.com/honeytrap/honeytrap/event"
+	"github.com/jaredfolkins/honeytrap/event"
 )
 
 //==========================================================================================

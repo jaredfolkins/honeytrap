@@ -17,8 +17,8 @@ import (
 	"errors"
 	"net"
 
-	"github.com/honeytrap/honeytrap/director"
-	"github.com/honeytrap/honeytrap/pushers"
+	"github.com/jaredfolkins/honeytrap/director"
+	"github.com/jaredfolkins/honeytrap/pushers"
 )
 
 var (

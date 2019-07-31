@@ -27,7 +27,7 @@ import (
 
 	"encoding/json"
 
-	"github.com/honeytrap/honeytrap/pushers"
+	"github.com/jaredfolkins/honeytrap/pushers"
 )
 
 type Test struct {

@@ -19,7 +19,7 @@ import (
 	"net"
 
 	"github.com/fatih/color"
-	"github.com/honeytrap/honeytrap/listener"
+	"github.com/jaredfolkins/honeytrap/listener"
 	logging "github.com/op/go-logging"
 )
 

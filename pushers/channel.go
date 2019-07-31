@@ -15,7 +15,7 @@ package pushers
 
 import (
 	"github.com/BurntSushi/toml"
-	"github.com/honeytrap/honeytrap/event"
+	"github.com/jaredfolkins/honeytrap/event"
 )
 
 // Channel defines a interface which exposes a single method for delivering

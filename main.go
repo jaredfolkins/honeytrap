@@ -18,7 +18,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/honeytrap/honeytrap/cmd/honeytrap"
+	"github.com/jaredfolkins/honeytrap/cmd/honeytrap"
 )
 
 func init() {

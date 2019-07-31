@@ -7,7 +7,7 @@
 Start by forking the Honeytrap GitHub repository, make changes in a branch and then send a pull request. We encourage pull requests to discuss code changes. Here are the steps in details:
 
 ### Setup your Honeytrap Github Repository
-Fork [Honeytrap upstream](https://github.com/honeytrap/honeytrap/fork) source repository to your own personal repository. Copy the URL of your Honeytrap fork (you will need it for the `git clone` command below).
+Fork [Honeytrap upstream](https://github.com/jaredfolkins/honeytrap/fork) source repository to your own personal repository. Copy the URL of your Honeytrap fork (you will need it for the `git clone` command below).
 
 ```sh
 $ mkdir -p $GOPATH/src/github.com/honeytrap
@@ -18,8 +18,8 @@ $ cd honeytrap
 
 ### Set up git remote as ``upstream``
 ```sh
-$ cd $GOPATH/src/github.com/honeytrap/honeytrap
-$ git remote add upstream https://github.com/honeytrap/honeytrap
+$ cd $GOPATH/src/github.com/jaredfolkins/honeytrap
+$ git remote add upstream https://github.com/jaredfolkins/honeytrap
 $ git fetch upstream
 $ git merge upstream/master
 ...

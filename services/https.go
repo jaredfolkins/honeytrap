@@ -25,10 +25,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/honeytrap/honeytrap/event"
-	tls "github.com/honeytrap/honeytrap/services/ja3/crypto/tls"
+	"github.com/jaredfolkins/honeytrap/event"
+	tls "github.com/jaredfolkins/honeytrap/services/ja3/crypto/tls"
 
-	"github.com/honeytrap/honeytrap/pushers"
+	"github.com/jaredfolkins/honeytrap/pushers"
 )
 
 var (

@@ -27,9 +27,9 @@ import (
 
 	"time"
 
-	"github.com/honeytrap/honeytrap/cmd"
-	"github.com/honeytrap/honeytrap/event"
-	"github.com/honeytrap/honeytrap/pushers"
+	"github.com/jaredfolkins/honeytrap/cmd"
+	"github.com/jaredfolkins/honeytrap/event"
+	"github.com/jaredfolkins/honeytrap/pushers"
 
 	"io"
 

@@ -16,7 +16,7 @@ package ipp
 import (
 	"testing"
 
-	"github.com/honeytrap/honeytrap/services/decoder"
+	"github.com/jaredfolkins/honeytrap/services/decoder"
 )
 
 /*

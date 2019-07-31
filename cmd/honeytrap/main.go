@@ -23,11 +23,11 @@ import (
 	"syscall"
 
 	"github.com/fatih/color"
-	"github.com/honeytrap/honeytrap/cmd"
-	"github.com/honeytrap/honeytrap/listener"
-	"github.com/honeytrap/honeytrap/pushers"
-	"github.com/honeytrap/honeytrap/server"
-	"github.com/honeytrap/honeytrap/services"
+	"github.com/jaredfolkins/honeytrap/cmd"
+	"github.com/jaredfolkins/honeytrap/listener"
+	"github.com/jaredfolkins/honeytrap/pushers"
+	"github.com/jaredfolkins/honeytrap/server"
+	"github.com/jaredfolkins/honeytrap/services"
 	cli "gopkg.in/urfave/cli.v1"
 
 	logging "github.com/op/go-logging"

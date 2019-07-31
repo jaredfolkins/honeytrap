@@ -16,7 +16,7 @@ package lxc
 import (
 	"net"
 
-	"github.com/honeytrap/honeytrap/event"
+	"github.com/jaredfolkins/honeytrap/event"
 )
 
 // ContainerClonedEvent returns a connection open event object giving the associated data values.

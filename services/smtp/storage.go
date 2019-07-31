@@ -23,7 +23,7 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/honeytrap/honeytrap/storage"
+	"github.com/jaredfolkins/honeytrap/storage"
 )
 
 func getStorage() (*smtpStorage, error) {

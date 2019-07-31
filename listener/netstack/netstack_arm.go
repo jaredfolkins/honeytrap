@@ -19,7 +19,7 @@ package netstack
 import (
 	"fmt"
 
-	"github.com/honeytrap/honeytrap/listener"
+	"github.com/jaredfolkins/honeytrap/listener"
 )
 
 func New(options ...func(listener.Listener) error) (listener.Listener, error) {

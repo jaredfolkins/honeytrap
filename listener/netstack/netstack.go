@@ -14,8 +14,8 @@
 package netstack
 
 import (
-	"github.com/honeytrap/honeytrap/event"
-	"github.com/honeytrap/honeytrap/listener"
+	"github.com/jaredfolkins/honeytrap/event"
+	"github.com/jaredfolkins/honeytrap/listener"
 	logging "github.com/op/go-logging"
 )
 

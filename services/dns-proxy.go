@@ -18,10 +18,10 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/honeytrap/honeytrap/director"
-	"github.com/honeytrap/honeytrap/event"
-	"github.com/honeytrap/honeytrap/listener"
-	"github.com/honeytrap/honeytrap/pushers"
+	"github.com/jaredfolkins/honeytrap/director"
+	"github.com/jaredfolkins/honeytrap/event"
+	"github.com/jaredfolkins/honeytrap/listener"
+	"github.com/jaredfolkins/honeytrap/pushers"
 	"github.com/miekg/dns"
 )
 

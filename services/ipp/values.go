@@ -13,7 +13,7 @@
 // limitations under the License.
 package ipp
 
-import "github.com/honeytrap/honeytrap/services/decoder"
+import "github.com/jaredfolkins/honeytrap/services/decoder"
 
 type ValueType interface {
 	Tag() byte

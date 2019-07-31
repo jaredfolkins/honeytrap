@@ -18,7 +18,7 @@ import (
 
 	"github.com/mimoo/disco/libdisco"
 
-	"github.com/honeytrap/honeytrap/storage"
+	"github.com/jaredfolkins/honeytrap/storage"
 )
 
 func Storage() (*agentListenerStorage, error) {

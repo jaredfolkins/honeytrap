@@ -16,7 +16,7 @@ package server
 import (
 	"time"
 
-	"github.com/honeytrap/honeytrap/event"
+	"github.com/jaredfolkins/honeytrap/event"
 )
 
 // ping delivers a ping event to the server indicate it's alive.

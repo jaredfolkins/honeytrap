@@ -18,7 +18,7 @@ import (
 	"path/filepath"
 
 	"github.com/BurntSushi/toml"
-	"github.com/honeytrap/honeytrap/pushers/eventbus"
+	"github.com/jaredfolkins/honeytrap/pushers/eventbus"
 )
 
 func WithEventBus(bus *eventbus.EventBus) func(*web) error {

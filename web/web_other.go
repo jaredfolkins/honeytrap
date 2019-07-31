@@ -23,14 +23,14 @@ import (
 	"path"
 	"time"
 
-	"github.com/honeytrap/honeytrap/cmd"
-	"github.com/honeytrap/honeytrap/config"
-	"github.com/honeytrap/honeytrap/event"
-	"github.com/honeytrap/honeytrap/pushers/eventbus"
+	"github.com/jaredfolkins/honeytrap/cmd"
+	"github.com/jaredfolkins/honeytrap/config"
+	"github.com/jaredfolkins/honeytrap/event"
+	"github.com/jaredfolkins/honeytrap/pushers/eventbus"
 
 	assetfs "github.com/elazarl/go-bindata-assetfs"
 	"github.com/gorilla/websocket"
-	assets "github.com/honeytrap/honeytrap-web"
+	assets "github.com/jaredfolkins/honeytrap-web"
 	logging "github.com/op/go-logging"
 	maxminddb "github.com/oschwald/maxminddb-golang"
 )

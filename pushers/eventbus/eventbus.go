@@ -14,8 +14,8 @@
 package eventbus
 
 import (
-	"github.com/honeytrap/honeytrap/event"
-	"github.com/honeytrap/honeytrap/pushers"
+	"github.com/jaredfolkins/honeytrap/event"
+	"github.com/jaredfolkins/honeytrap/pushers"
 )
 
 // EventBus defines a structure which provides a pubsub bus where message.Events

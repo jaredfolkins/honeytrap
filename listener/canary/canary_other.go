@@ -19,7 +19,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/honeytrap/honeytrap/listener"
+	"github.com/jaredfolkins/honeytrap/listener"
 )
 
 type Canary struct {

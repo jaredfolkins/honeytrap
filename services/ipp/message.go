@@ -16,7 +16,7 @@ package ipp
 import (
 	"bytes"
 
-	"github.com/honeytrap/honeytrap/services/decoder"
+	"github.com/jaredfolkins/honeytrap/services/decoder"
 )
 
 const (

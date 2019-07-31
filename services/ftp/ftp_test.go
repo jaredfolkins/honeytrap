@@ -18,8 +18,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/honeytrap/honeytrap/pushers"
-	"github.com/honeytrap/honeytrap/storage"
+	"github.com/jaredfolkins/honeytrap/pushers"
+	"github.com/jaredfolkins/honeytrap/storage"
 )
 
 const (

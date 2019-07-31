@@ -17,7 +17,7 @@ import (
 	"net"
 
 	"github.com/BurntSushi/toml"
-	"github.com/honeytrap/honeytrap/pushers"
+	"github.com/jaredfolkins/honeytrap/pushers"
 )
 
 type AddAddresser interface {

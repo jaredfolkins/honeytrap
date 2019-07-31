@@ -24,11 +24,11 @@ import (
 
 	_ "net/http/pprof"
 
-	"github.com/honeytrap/honeytrap/storage"
+	"github.com/jaredfolkins/honeytrap/storage"
 	"github.com/pkg/profile"
 	"github.com/rs/xid"
 
-	"github.com/honeytrap/honeytrap/server/profiler"
+	"github.com/jaredfolkins/honeytrap/server/profiler"
 )
 
 type OptionFn func(*Honeytrap) error

@@ -18,9 +18,9 @@ import (
 	"net"
 
 	"github.com/BurntSushi/toml"
-	"github.com/honeytrap/honeytrap/director"
-	"github.com/honeytrap/honeytrap/event"
-	"github.com/honeytrap/honeytrap/pushers"
+	"github.com/jaredfolkins/honeytrap/director"
+	"github.com/jaredfolkins/honeytrap/event"
+	"github.com/jaredfolkins/honeytrap/pushers"
 
 	logging "github.com/op/go-logging"
 )

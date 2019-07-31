@@ -23,9 +23,9 @@ import (
 
 	bus "github.com/dutchcoders/gobus"
 	"github.com/fatih/color"
-	"github.com/honeytrap/honeytrap/event"
-	"github.com/honeytrap/honeytrap/listener"
-	"github.com/honeytrap/honeytrap/messages"
+	"github.com/jaredfolkins/honeytrap/event"
+	"github.com/jaredfolkins/honeytrap/listener"
+	"github.com/jaredfolkins/honeytrap/messages"
 	"github.com/mimoo/disco/libdisco"
 
 	logging "github.com/op/go-logging"

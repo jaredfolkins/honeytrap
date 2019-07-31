@@ -22,10 +22,10 @@ import (
 
 	"github.com/vishvananda/netlink"
 
-	"github.com/honeytrap/honeytrap/listener"
-	"github.com/honeytrap/honeytrap/listener/netstack-experimental/arp"
-	udpf "github.com/honeytrap/honeytrap/listener/netstack-experimental/udp"
-	"github.com/honeytrap/honeytrap/pushers"
+	"github.com/jaredfolkins/honeytrap/listener"
+	"github.com/jaredfolkins/honeytrap/listener/netstack-experimental/arp"
+	udpf "github.com/jaredfolkins/honeytrap/listener/netstack-experimental/udp"
+	"github.com/jaredfolkins/honeytrap/pushers"
 
 	"math/big"
 

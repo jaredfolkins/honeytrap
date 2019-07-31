@@ -21,7 +21,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/honeytrap/honeytrap/services/ja3/crypto/internal/cipherhw"
+	"github.com/jaredfolkins/honeytrap/services/ja3/crypto/internal/cipherhw"
 )
 
 const (

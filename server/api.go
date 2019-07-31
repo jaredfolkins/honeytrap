@@ -28,9 +28,9 @@ import (
 	"github.com/dimfeld/httptreemux"
 	assetfs "github.com/elazarl/go-bindata-assetfs"
 	"github.com/gorilla/websocket"
-	"github.com/honeytrap/honeytrap/config"
-	"github.com/honeytrap/honeytrap/director"
-	"github.com/honeytrap/honeytrap/event"
+	"github.com/jaredfolkins/honeytrap/config"
+	"github.com/jaredfolkins/honeytrap/director"
+	"github.com/jaredfolkins/honeytrap/event"
 )
 
 //=============================================================================================================

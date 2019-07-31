@@ -1,4 +1,4 @@
-module github.com/honeytrap/honeytrap
+module github.com/jaredfolkins/honeytrap
 
 go 1.11
 

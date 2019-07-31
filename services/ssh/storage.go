@@ -14,7 +14,7 @@
 package ssh
 
 import (
-	"github.com/honeytrap/honeytrap/storage"
+	"github.com/jaredfolkins/honeytrap/storage"
 )
 
 func getStorage() (*sshStorage, error) {

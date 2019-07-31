@@ -20,10 +20,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/honeytrap/honeytrap/event"
-	"github.com/honeytrap/honeytrap/pushers"
-	"github.com/honeytrap/honeytrap/services"
-	"github.com/honeytrap/honeytrap/services/bannerfmt"
+	"github.com/jaredfolkins/honeytrap/event"
+	"github.com/jaredfolkins/honeytrap/pushers"
+	"github.com/jaredfolkins/honeytrap/services"
+	"github.com/jaredfolkins/honeytrap/services/bannerfmt"
 	logging "github.com/op/go-logging"
 )
 

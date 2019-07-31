@@ -13,7 +13,7 @@
 // limitations under the License.
 package ipp
 
-import "github.com/honeytrap/honeytrap/services/decoder"
+import "github.com/jaredfolkins/honeytrap/services/decoder"
 
 type attribGroup struct {
 	tag byte //begin-attribute-group-tag

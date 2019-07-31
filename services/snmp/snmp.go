@@ -20,9 +20,9 @@ import (
 	"net"
 	"strings"
 
-	"github.com/honeytrap/honeytrap/event"
-	"github.com/honeytrap/honeytrap/pushers"
-	"github.com/honeytrap/honeytrap/services"
+	"github.com/jaredfolkins/honeytrap/event"
+	"github.com/jaredfolkins/honeytrap/pushers"
+	"github.com/jaredfolkins/honeytrap/services"
 	"github.com/op/go-logging"
 )
 

@@ -19,7 +19,7 @@ import (
 	"net"
 	"os"
 
-	"github.com/honeytrap/honeytrap/pushers"
+	"github.com/jaredfolkins/honeytrap/pushers"
 )
 
 var (

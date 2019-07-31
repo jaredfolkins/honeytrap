@@ -15,7 +15,7 @@ package pushers
 
 import (
 	bus "github.com/dutchcoders/gobus"
-	"github.com/honeytrap/honeytrap/event"
+	"github.com/jaredfolkins/honeytrap/event"
 )
 
 func NewBusChannel() *BusChannel {
