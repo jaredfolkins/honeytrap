@@ -324,20 +324,8 @@ func compareAddr(addr1 net.Addr, addr2 net.Addr) bool {
 
 // Run will start honeytrap
 func (hc *Honeytrap) Run(ctx context.Context) {
-	if IsTerminal(os.Stdout) {
-		fmt.Println(color.YellowString(`
- _   _                       _____                %c
-| | | | ___  _ __   ___ _   |_   _| __ __ _ _ __
-| |_| |/ _ \| '_ \ / _ \ | | || || '__/ _' | '_ \
-|  _  | (_) | | | |  __/ |_| || || | | (_| | |_) |
-|_| |_|\___/|_| |_|\___|\__, ||_||_|  \__,_| .__/
-                        |___/              |_|
-`, 127855))
-	}
-
-	fmt.Println(color.YellowString("Honeytrap starting (%s)...", hc.token))
-	fmt.Println(color.YellowString("Version: %s (%s)", cmd.Version, cmd.ShortCommitID))
-
+	fmt.Println(color.HiBlueString("Kushtaka-sensor startin (%s)...", hc.token))
+	fmt.Println(color.HiBlueString("Version: %s (%s)", cmd.Version, cmd.ShortCommitID))
 	log.Debugf("Using datadir: %s", hc.dataDir)
 
 	go hc.heartbeat()
