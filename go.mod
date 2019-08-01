@@ -16,7 +16,6 @@ require (
 	github.com/eapache/go-resiliency v1.0.0 // indirect
 	github.com/eapache/go-xerial-snappy v0.0.0-20160609142408-bb955e01b934 // indirect
 	github.com/eapache/queue v1.1.0 // indirect
-	github.com/elazarl/go-bindata-assetfs v0.0.0-20180223160309-38087fe4dafb
 	github.com/fatih/color v1.6.0
 	github.com/fortytw2/leaktest v1.3.0 // indirect
 	github.com/fuyufjh/splunk-hec-go v0.3.3
@@ -29,7 +28,6 @@ require (
 	github.com/google/gopacket v1.1.14
 	github.com/google/netstack v0.0.0
 	github.com/gorilla/websocket v1.2.0
-	github.com/honeytrap/honeytrap-web v0.0.0-20180212153621-02944754979e
 	github.com/honeytrap/protocol v0.0.0-20190410072324-219b95413db0
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/mailru/easyjson v0.0.0-20171120080333-32fa128f234d // indirect
@@ -39,7 +37,6 @@ require (
 	github.com/mimoo/StrobeGo v0.0.0-20171206114618-43f0c284a7f9 // indirect
 	github.com/mimoo/disco v0.0.0-20180114190844-15dd4b8476c9
 	github.com/op/go-logging v0.0.0-20160211212156-b2cb9fa56473
-	github.com/oschwald/maxminddb-golang v1.3.0
 	github.com/pierrec/lz4 v0.0.0-20171218195038-2fcda4cb7018 // indirect
 	github.com/pierrec/xxHash v0.1.1 // indirect
 	github.com/pkg/errors v0.8.0 // indirect
