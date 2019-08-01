@@ -32,9 +32,9 @@ require (
 	github.com/gorilla/websocket v1.2.0
 	github.com/honeytrap/protocol v0.0.0-20190410072324-219b95413db0
 	github.com/kr/pretty v0.1.0 // indirect
+	github.com/labstack/gommon v0.2.9
 	github.com/mailru/easyjson v0.0.0-20171120080333-32fa128f234d // indirect
-	github.com/mattn/go-colorable v0.0.9 // indirect
-	github.com/mattn/go-isatty v0.0.3
+	github.com/mattn/go-isatty v0.0.8
 	github.com/miekg/dns v1.0.4
 	github.com/mimoo/StrobeGo v0.0.0-20171206114618-43f0c284a7f9 // indirect
 	github.com/mimoo/disco v0.0.0-20180114190844-15dd4b8476c9
@@ -50,7 +50,6 @@ require (
 	github.com/songgao/packets v0.0.0-20160404182456-549a10cd4091
 	github.com/songgao/water v0.0.0-20180221190335-75f112d19d5a
 	github.com/streadway/amqp v0.0.0-20180315184602-8e4aba63da9f
-	github.com/stretchr/testify v1.3.0 // indirect
 	github.com/vishvananda/netlink v1.0.0
 	github.com/vishvananda/netns v0.0.0-20171111001504-be1fbeda1936 // indirect
 	github.com/yuin/gopher-lua v0.0.0-20190206043414-8bfc7677f583

@@ -43,18 +43,6 @@ var (
 	UserSessionClosed    = Type("SESSION:USER:CLOSED")
 	ConnectionReadError  = Type("CONNECTION:ERROR:READ")
 	ConnectionWriteError = Type("CONNECTION:ERROR:WRITE")
-	ContainerStarted     = Type("CONTAINER:STARTED")
-	ContainerFrozen      = Type("CONTAINER:FROZEN")
-	ContainerDial        = Type("CONTAINER:DIAL")
-	ContainerError       = Type("CONTAINER:ERROR")
-	ContainerUnfrozen    = Type("CONTAINER:UNFROZEN")
-	ContainerCloned      = Type("CONTAINER:CLONED")
-	ContainerStopped     = Type("CONTAINER:STOPPED")
-	ContainerPaused      = Type("CONTAINER:PAUSED")
-	ContainerResumed     = Type("CONTAINER:RESUMED")
-	ContainerTarred      = Type("CONTAINER:TARRED")
-	ContainerCheckpoint  = Type("CONTAINER:CHECKPOINT")
-	ContainerPcaped      = Type("CONTAINER:PCAPED")
 )
 
 //====================================================================================

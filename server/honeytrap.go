@@ -30,13 +30,6 @@ import (
 	"github.com/jaredfolkins/honeytrap/cmd"
 	"github.com/jaredfolkins/honeytrap/config"
 
-	"github.com/jaredfolkins/honeytrap/director"
-	_ "github.com/jaredfolkins/honeytrap/director/forward"
-	_ "github.com/jaredfolkins/honeytrap/director/lxc"
-
-	// _ "github.com/jaredfolkins/honeytrap/director/qemu"
-	// Import your directors here.
-
 	"github.com/jaredfolkins/honeytrap/pushers"
 	"github.com/jaredfolkins/honeytrap/pushers/eventbus"
 
@@ -96,8 +89,6 @@ type Honeytrap struct {
 	// TODO(nl5887): rename to bus, should we encapsulate this?
 	bus *eventbus.EventBus
 
-	director director.Director
-
 	token string
 
 	dataDir string
@@ -116,7 +107,6 @@ func New(options ...OptionFn) (*Honeytrap, error) {
 
 	h := &Honeytrap{
 		config:   conf,
-		director: director.MustDummy(),
 		bus:      bus,
 		profiler: profiler.Dummy(),
 	}
@@ -411,39 +401,6 @@ func (hc *Honeytrap) Run(ctx context.Context) {
 			log.Warningf("Channel %s is unused. Did you forget to add a filter?", name)
 		}
 	}
-
-	// initialize directors
-	directors := map[string]director.Director{}
-	availableDirectorNames := director.GetAvailableDirectorNames()
-
-	for key, s := range hc.config.Directors {
-		x := struct {
-			Type string `toml:"type"`
-		}{}
-
-		err := hc.config.PrimitiveDecode(s, &x)
-		if err != nil {
-			log.Error("Error parsing configuration of director: %s", err.Error())
-			continue
-		}
-
-		if x.Type == "" {
-			log.Error("Error parsing configuration of service %s: type not set", key)
-			continue
-		}
-
-		if directorFunc, ok := director.Get(x.Type); !ok {
-			log.Error("Director type=%s not supported on platform (director=%s). Available directors: %s", x.Type, key, strings.Join(availableDirectorNames, ", "))
-		} else if d, err := directorFunc(
-			director.WithChannel(hc.bus),
-			director.WithConfig(s, hc.config),
-		); err != nil {
-			log.Fatalf("Error initializing director %s(%s): %s", key, x.Type, err)
-		} else {
-			directors[key] = d
-		}
-	}
-
 	// initialize listener
 	x := struct {
 		Type string `toml:"type"`
@@ -456,11 +413,6 @@ func (hc *Honeytrap) Run(ctx context.Context) {
 
 	if x.Type == "" {
 		fmt.Println(color.RedString("Listener not set"))
-	}
-
-	var enabledDirectorNames []string
-	for key := range directors {
-		enabledDirectorNames = append(enabledDirectorNames, key)
 	}
 
 	serviceList := make(map[string]*ServiceMap)
@@ -487,14 +439,6 @@ func (hc *Honeytrap) Run(ctx context.Context) {
 		options := []services.ServicerFunc{
 			services.WithChannel(hc.bus),
 			services.WithConfig(s, hc.config),
-		}
-
-		if x.Director == "" {
-		} else if d, ok := directors[x.Director]; ok {
-			options = append(options, services.WithDirector(d))
-		} else {
-			log.Error(color.RedString("Could not find director=%s for service=%s. Enabled directors: %s", x.Director, key, strings.Join(enabledDirectorNames, ", ")))
-			continue
 		}
 
 		fn, ok := services.Get(x.Type)

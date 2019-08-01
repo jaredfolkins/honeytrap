@@ -18,7 +18,6 @@ import (
 	"net"
 
 	"github.com/BurntSushi/toml"
-	"github.com/jaredfolkins/honeytrap/director"
 	"github.com/jaredfolkins/honeytrap/event"
 	"github.com/jaredfolkins/honeytrap/pushers"
 
@@ -71,19 +70,6 @@ func WithChannel(eb pushers.Channel) ServicerFunc {
 	}
 }
 
-type Proxier interface {
-	SetDirector(director.Director)
-}
-
-func WithDirector(d director.Director) ServicerFunc {
-	return func(s Servicer) error {
-		if p, ok := s.(Proxier); ok {
-			p.SetDirector(d)
-		}
-		return nil
-	}
-}
-
 type TomlDecoder interface {
 	PrimitiveDecode(primValue toml.Primitive, v interface{}) error
 }
@@ -102,73 +88,3 @@ var (
 		SensorLow,
 	)
 )
-
-/*
-
-var (
-	_ = director.Register("low", New)
-)
-
-// New will configure the low interaction director
-func New(options ...func(director.Director)) (director.Director, error) {
-	d := &lowDirector{
-		eb: pushers.Dummy(),
-		l:  listener.MustDummy(),
-	}
-
-	for _, optionFn := range options {
-		optionFn(d)
-	}
-
-	return d, nil
-}
-
-type lowDirector struct {
-	l listener.Listener
-
-	eb pushers.Channel
-}
-
-func (d *lowDirector) SetChannel(eb pushers.Channel) {
-	d.eb = eb
-}
-
-func (d *lowDirector) SetListener(l listener.Listener) {
-	d.l = l
-}
-
-// Run will start the low interaction director
-func (d *lowDirector) Run(ctx context.Context) {
-	log.Info("LowDirector started...")
-	defer log.Info("LowDirector finished...")
-
-	fns := map[string]func(net.Conn){
-		// "23":   d.Telnet(),
-		"8022": d.SSH(),
-		"8080": d.HTTP(),
-	}
-
-	for {
-		conn, err := d.l.Accept()
-		if err != nil {
-			panic(err)
-		}
-
-		log.Debugf("Connection received from: %s", conn.LocalAddr())
-
-		go func() {
-			defer conn.Close()
-
-			_, port, _ := net.SplitHostPort(conn.LocalAddr().String())
-
-			fn, ok := fns[port]
-			if !ok {
-				return
-			}
-
-			fn(conn)
-		}()
-	}
-}
-
-*/
