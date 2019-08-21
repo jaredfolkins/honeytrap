@@ -94,7 +94,9 @@ type Honeytrap struct {
 	dataDir string
 
 	// Maps a port and a protocol to an array of pointers to services
-	ports map[net.Addr][]*ServiceMap
+	ports         map[net.Addr][]*ServiceMap
+	channels      map[string]pushers.Channel
+	isChannelUsed map[string]bool
 }
 
 // New returns a new instance of a Honeytrap struct.
@@ -106,9 +108,11 @@ func New(options ...OptionFn) (*Honeytrap, error) {
 	conf := &config.Default
 
 	h := &Honeytrap{
-		config:   conf,
-		bus:      bus,
-		profiler: profiler.Dummy(),
+		config:        conf,
+		bus:           bus,
+		profiler:      profiler.Dummy(),
+		channels:      map[string]pushers.Channel{},
+		isChannelUsed: make(map[string]bool),
 	}
 
 	for _, fn := range options {
@@ -312,19 +316,7 @@ func compareAddr(addr1 net.Addr, addr2 net.Addr) bool {
 	return false
 }
 
-// Run will start honeytrap
-func (hc *Honeytrap) Run(ctx context.Context) {
-	fmt.Println(color.HiBlueString("Kushtaka-sensor startin (%s)...", hc.token))
-	fmt.Println(color.HiBlueString("Version: %s (%s)", cmd.Version, cmd.ShortCommitID))
-	log.Debugf("Using datadir: %s", hc.dataDir)
-
-	go hc.heartbeat()
-
-	hc.profiler.Start()
-
-	channels := map[string]pushers.Channel{}
-	isChannelUsed := make(map[string]bool)
-	// sane defaults!
+func (hc *Honeytrap) ConfigureChannels() {
 
 	for key, s := range hc.config.Channels {
 		x := struct {
@@ -349,11 +341,14 @@ func (hc *Honeytrap) Run(ctx context.Context) {
 		); err != nil {
 			log.Fatalf("Error initializing channel %s(%s): %s", key, x.Type, err)
 		} else {
-			channels[key] = d
-			isChannelUsed[key] = false
+			hc.channels[key] = d
+			hc.isChannelUsed[key] = false
 		}
 	}
 
+}
+
+func (hc *Honeytrap) ConfigureBus() {
 	// subscribe default to global bus
 	// maybe we can rewrite pushers / channels to use global bus instead
 	bc := pushers.NewBusChannel()
@@ -373,13 +368,13 @@ func (hc *Honeytrap) Run(ctx context.Context) {
 		}
 
 		for _, name := range x.Channels {
-			channel, ok := channels[name]
+			channel, ok := hc.channels[name]
 			if !ok {
 				log.Error("Could not find channel %s for filter", name)
 				continue
 			}
 
-			isChannelUsed[name] = true
+			hc.isChannelUsed[name] = true
 			channel = pushers.TokenChannel(channel, hc.token)
 
 			if len(x.Categories) != 0 {
@@ -396,11 +391,17 @@ func (hc *Honeytrap) Run(ctx context.Context) {
 		}
 	}
 
-	for name, isUsed := range isChannelUsed {
+	for name, isUsed := range hc.isChannelUsed {
 		if !isUsed {
 			log.Warningf("Channel %s is unused. Did you forget to add a filter?", name)
 		}
 	}
+
+}
+
+func (hc *Honeytrap) ConfigureServices(ctx context.Context) listener.Listener {
+	serviceList := make(map[string]*ServiceMap)
+	isServiceUsed := make(map[string]bool) // Used to check that every service is used by a port
 	// initialize listener
 	x := struct {
 		Type string `toml:"type"`
@@ -408,15 +409,12 @@ func (hc *Honeytrap) Run(ctx context.Context) {
 
 	if err := hc.config.PrimitiveDecode(hc.config.Listener, &x); err != nil {
 		log.Error("Error parsing configuration of listener: %s", err.Error())
-		return
 	}
 
 	if x.Type == "" {
 		fmt.Println(color.RedString("Listener not set"))
 	}
 
-	serviceList := make(map[string]*ServiceMap)
-	isServiceUsed := make(map[string]bool) // Used to check that every service is used by a port
 	// same for proxies
 	for key, s := range hc.config.Services {
 		x := struct {
@@ -460,7 +458,7 @@ func (hc *Honeytrap) Run(ctx context.Context) {
 	listenerFunc, ok := listener.Get(x.Type)
 	if !ok {
 		fmt.Println(color.RedString("Listener %s not support on platform", x.Type))
-		return
+		return nil
 	}
 
 	l, err := listenerFunc(
@@ -568,8 +566,25 @@ func (hc *Honeytrap) Run(ctx context.Context) {
 
 	if err := l.Start(ctx); err != nil {
 		fmt.Println(color.RedString("Error starting listener: %s", err.Error()))
-		return
 	}
+
+	return l
+
+}
+
+// Run will start honeytrap
+func (hc *Honeytrap) Run(ctx context.Context) {
+	fmt.Println(color.HiBlueString("Kushtaka-sensor startin (%s)...", hc.token))
+	fmt.Println(color.HiBlueString("Version: %s (%s)", cmd.Version, cmd.ShortCommitID))
+	log.Debugf("Using datadir: %s", hc.dataDir)
+
+	go hc.heartbeat()
+
+	// sane defaults!
+	hc.profiler.Start()
+	hc.ConfigureChannels()
+	hc.ConfigureBus()
+	l := hc.ConfigureServices(ctx)
 
 	incoming := make(chan net.Conn)
 
