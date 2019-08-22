@@ -94,9 +94,13 @@ type Honeytrap struct {
 	dataDir string
 
 	// Maps a port and a protocol to an array of pointers to services
-	ports         map[net.Addr][]*ServiceMap
+	ports map[net.Addr][]*ServiceMap
+
+	// added by jared
 	channels      map[string]pushers.Channel
 	isChannelUsed map[string]bool
+	serviceList   map[string]*ServiceMap
+	isServiceUsed map[string]bool // Used to check that every service is used by a port
 }
 
 // New returns a new instance of a Honeytrap struct.
@@ -113,6 +117,8 @@ func New(options ...OptionFn) (*Honeytrap, error) {
 		profiler:      profiler.Dummy(),
 		channels:      map[string]pushers.Channel{},
 		isChannelUsed: make(map[string]bool),
+		serviceList:   make(map[string]*ServiceMap),
+		isServiceUsed: make(map[string]bool), // Used to check that every service is used by a port
 	}
 
 	for _, fn := range options {
@@ -348,9 +354,9 @@ func (hc *Honeytrap) ConfigureChannels() {
 
 }
 
+// subscribe default to global bus
+// maybe we can rewrite pushers / channels to use global bus instead
 func (hc *Honeytrap) ConfigureBus() {
-	// subscribe default to global bus
-	// maybe we can rewrite pushers / channels to use global bus instead
 	bc := pushers.NewBusChannel()
 	hc.bus.Subscribe(bc)
 
@@ -399,9 +405,9 @@ func (hc *Honeytrap) ConfigureBus() {
 
 }
 
-func (hc *Honeytrap) ConfigureServices(ctx context.Context) listener.Listener {
-	serviceList := make(map[string]*ServiceMap)
-	isServiceUsed := make(map[string]bool) // Used to check that every service is used by a port
+func (hc *Honeytrap) ConfigureServices() struct {
+	Type string `toml:"type"`
+} {
 	// initialize listener
 	x := struct {
 		Type string `toml:"type"`
@@ -446,15 +452,21 @@ func (hc *Honeytrap) ConfigureServices(ctx context.Context) listener.Listener {
 		}
 
 		service := fn(options...)
-		serviceList[key] = &ServiceMap{
+		hc.serviceList[key] = &ServiceMap{
 			Service: service,
 			Name:    key,
 			Type:    x.Type,
 		}
-		isServiceUsed[key] = false
+		hc.isServiceUsed[key] = false
 		log.Infof("Configured service %s (%s)", x.Type, key)
 	}
 
+	return x
+}
+
+func (hc *Honeytrap) ConfigureListener(ctx context.Context, x struct {
+	Type string `toml:"type"`
+}) listener.Listener {
 	listenerFunc, ok := listener.Get(x.Type)
 	if !ok {
 		fmt.Println(color.RedString("Listener %s not support on platform", x.Type))
@@ -514,13 +526,13 @@ func (hc *Honeytrap) ConfigureServices(ctx context.Context) listener.Listener {
 			// Get the services from their names
 			var servicePtrs []*ServiceMap
 			for _, serviceName := range x.Services {
-				ptr, ok := serviceList[serviceName]
+				ptr, ok := hc.serviceList[serviceName]
 				if !ok {
 					log.Error("Unknown service '%s' for port %s", serviceName, portStr)
 					continue
 				}
 				servicePtrs = append(servicePtrs, ptr)
-				isServiceUsed[serviceName] = true
+				hc.isServiceUsed[serviceName] = true
 			}
 			if len(servicePtrs) == 0 {
 				log.Errorf("Port %s has no valid services, it won't be listened on", portStr)
@@ -554,7 +566,7 @@ func (hc *Honeytrap) ConfigureServices(ctx context.Context) listener.Listener {
 		}
 	}
 
-	for name, isUsed := range isServiceUsed {
+	for name, isUsed := range hc.isServiceUsed {
 		if !isUsed {
 			log.Warningf("Service %s is defined but not used", name)
 		}
@@ -569,7 +581,6 @@ func (hc *Honeytrap) ConfigureServices(ctx context.Context) listener.Listener {
 	}
 
 	return l
-
 }
 
 // Run will start honeytrap
@@ -584,7 +595,8 @@ func (hc *Honeytrap) Run(ctx context.Context) {
 	hc.profiler.Start()
 	hc.ConfigureChannels()
 	hc.ConfigureBus()
-	l := hc.ConfigureServices(ctx)
+	x := hc.ConfigureServices()
+	l := hc.ConfigureListener(ctx, x)
 
 	incoming := make(chan net.Conn)
 
