@@ -63,16 +63,7 @@ import (
 	"github.com/jaredfolkins/honeytrap/server/profiler"
 
 	_ "github.com/jaredfolkins/honeytrap/pushers/console"
-	_ "github.com/jaredfolkins/honeytrap/pushers/dshield"
-	_ "github.com/jaredfolkins/honeytrap/pushers/elasticsearch"
 	_ "github.com/jaredfolkins/honeytrap/pushers/file"
-	_ "github.com/jaredfolkins/honeytrap/pushers/kafka"
-	_ "github.com/jaredfolkins/honeytrap/pushers/marija"
-	_ "github.com/jaredfolkins/honeytrap/pushers/pulsar"
-	_ "github.com/jaredfolkins/honeytrap/pushers/rabbitmq"
-	_ "github.com/jaredfolkins/honeytrap/pushers/raven"
-	_ "github.com/jaredfolkins/honeytrap/pushers/slack"
-	_ "github.com/jaredfolkins/honeytrap/pushers/splunk"
 
 	"github.com/op/go-logging"
 )
