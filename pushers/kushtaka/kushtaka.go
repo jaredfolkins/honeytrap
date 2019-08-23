@@ -20,5 +20,5 @@ func New(options ...func(pushers.Channel) error) (pushers.Channel, error) {
 	c := Backend{
 		ch: ch,
 	}
-	return nil
+	return c, nil
 }

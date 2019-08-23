@@ -51,8 +51,6 @@ import (
 	"github.com/jaredfolkins/honeytrap/listener"
 	_ "github.com/jaredfolkins/honeytrap/listener/agent"
 	_ "github.com/jaredfolkins/honeytrap/listener/canary"
-	_ "github.com/jaredfolkins/honeytrap/listener/netstack"
-	_ "github.com/jaredfolkins/honeytrap/listener/netstack-experimental"
 	_ "github.com/jaredfolkins/honeytrap/listener/socket"
 	_ "github.com/jaredfolkins/honeytrap/listener/tap"
 	_ "github.com/jaredfolkins/honeytrap/listener/tun"
